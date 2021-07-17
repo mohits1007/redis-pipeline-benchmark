@@ -61,11 +61,7 @@ def perform_loop_check(client, upper_bound):
     clear_set(client)
     base_exec_loop(client, upper_bound)
 
-# perform_basic_check(client)
-# perform_loop_check(client, 100000)
-
-if __name__ == '__main__':
-    client = redis.Redis(host = "127.0.0.1", port = 6379)
+def perform_parallel_setadd_commands(client):
     proc = []
     id = 1
     no_of_paralled_func = 100
@@ -77,5 +73,41 @@ if __name__ == '__main__':
         id += 1
     for p in proc:
         p.join()
-    
+
+def pipeline_incr_commands(client):
+    begin = datetime.datetime.now()
+    pipeline = client.pipeline(transaction = False)
+    pipeline.incr('counter1').incr('counter2').incr('counter3').incr('counter4').incr('counter5')
+    pipeline.execute()
+    end = datetime.datetime.now()
+    print('pipeline_exec_counter:',end-begin)
+
+def base_incr_commands(client):
+    begin = datetime.datetime.now()
+    client.incr('counter1')
+    client.incr('counter2')
+    client.incr('counter3')
+    client.incr('counter4')
+    client.incr('counter5')
+    end = datetime.datetime.now()
+    print('base_exec_counter:',end-begin)
+
+def perform_parallel_incr_commands(client):
+    client.set('counter1',1)
+    client.set('counter2',1)
+    client.set('counter3',1)
+    client.set('counter4',1)
+    client.set('counter5',1)
+    proc = []
+    no_of_paralled_func = 1000
+    for i in range(no_of_paralled_func):
+        p = Process(target=pipeline_incr_commands, args=(client,))
+        p.start()
+        proc.append(p)
+    for p in proc:
+        p.join()
+
+if __name__ == '__main__':
+    client = redis.Redis(host = "127.0.0.1", port = 6379)
+    perform_parallel_incr_commands(client)
 
