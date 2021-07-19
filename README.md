@@ -1,7 +1,6 @@
-# redis-pipeline-benchmark
-
-
-# Benchmarking with 2 instances and 100,000 set add commands
+:rainbow: Benchmark
+<pre> 
+<h2> Benchmarking with 2 instances and 100,000 set add commands </h2>
 
 pipeline_exec_loop
 2 instances 100,000 commands
@@ -13,7 +12,7 @@ base_exec: 0:00:08.432589
 
 
 
-# Benchmarking with 4 instances and 100,000 set add commands
+<h2> Benchmarking with 4 instances and 100,000 set add commands </h2>
 
 pipeline_exec_loop
 4 instances 100,000 commands
@@ -25,7 +24,7 @@ base_exec: 0:00:12.963392
 
 
 
-# Benchmarking with 8 instances and 100,000 set add commands
+<h2> Benchmarking with 8 instances and 100,000 set add commands </h2>
 
 pipeline_exec_loop
 8 instances 100,000 commands
@@ -37,7 +36,7 @@ base_exec: 0:00:26.440216
 
 
 
-# Benchmarking with 16 instances and 100,000 set add commands
+<h2> Benchmarking with 16 instances and 100,000 set add commands </h2>
 
 pipeline_exec_loop
 16 instances 100,000 commands
@@ -49,7 +48,7 @@ base_exec: 0:00:48.524920
 
 
 
-# Benchmarking with 100 instances and 100,000 set add commands
+<h2> Benchmarking with 100 instances and 100,000 set add commands </h2>
 
 pipeline_exec_loop
 100 instances 100,000 commands
@@ -59,7 +58,7 @@ base_exec
 100 instances 100,000 commands
 base_exec: 0:06:15.390572
 
-# Benchmarking with 100 instances and 5 incr commands
+<h2> Benchmarking with 100 instances and 5 incr commands </h2>
 
 pipeline_exec
 100 instances 5 incr commands
@@ -69,7 +68,7 @@ base_exec
 100 instances 5 incr commands
 base_exec_counter: 0:00:00.005998
 
-# Benchmarking with 1000 instances and 5 incr commands
+<h2> Benchmarking with 1000 instances and 5 incr commands </h2>
 
 pipeline_exec
 1000 instances 5 incr commands
@@ -78,3 +77,4 @@ pipeline_exec_counter: 0:00:00.555706
 base_exec
 1000 instances 5 incr commands
 OSError: [Errno 24] Too many open files
+</pre>
